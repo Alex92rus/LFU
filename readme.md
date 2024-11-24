@@ -50,7 +50,7 @@ Mind that here we take advantage of two constraints (updating a single number at
 and in total the whole sorting would be O(c), where c is the number of
 retrieve hit calls to the cache, which is equal to the sum of all frequencies in the cache.
 
-When writing a new key, value into the cache, we define a object instance variable min_node to track the head of the list.
+When writing a new key, value into the cache, we define an object instance variable min_node to track the head of the list.
 We evict a key from the set mapped to new_node if the capacity has already been reached.
 We create the head of the doubly linked frequency list if it is the first item inserted in the cache, which will have a 0 frequency and 1 key.
 We write the key, value pair in the cache value map, if the key is already there, the value is overridden to the new from te call.
