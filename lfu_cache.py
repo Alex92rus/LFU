@@ -39,7 +39,7 @@ class DLinkedlist:
             print("Empty List")
 
 
-class LFUCache():
+class LFUCache:
 
     def __init__(self, capacity):
         self.min_node = None
@@ -48,22 +48,22 @@ class LFUCache():
         self.frequency_map = {}
         self.key_doubly_list_map = {}
 
-    def read(self, key):
-        if key in self.value_map: # is the key in the cache map
+    def retrieve(self, key):
+        if key in self.value_map:  # is the key in the cache map
             try:
                 node: Dl_node = self.frequency_map[key]
-                dictKeys: set = self.key_doubly_list_map[node]
-                dictKeys.remove(key) # remove the key from its frequency sibling keys
-                if len(dictKeys) == 0: # if the key was alone with this frequency, remove the frequency from the list
+                dict_keys: set = self.key_doubly_list_map[node]
+                dict_keys.remove(key)  # remove the key from its frequency sibling keys
+                if len(dict_keys) == 0:  # if the key was alone with this frequency, remove the frequency from the list
                     if node.next is not None and node.next.value == node.value + 1:
                         next_set: set = self.key_doubly_list_map[node.next]
                         next_set.add(key)
                         node.next.prev = node.prev
                         node.prev.next = node.next
                         self.frequency_map[key] = node.next
-                    else: # reuse the same node just update its frequency
+                    else:  # reuse the same node just update its frequency
                         node.value += 1
-                        dictKeys.add(key)
+                        dict_keys.add(key)
                 else:
                     if node.next is not None and node.next.value == node.value + 1:
                         next_set: set = self.key_doubly_list_map[node.next]
@@ -134,21 +134,21 @@ if __name__ == '__main__':
     a_cache.write(10, 'a')
     a_cache.write(20, 'b')
     a_cache.write(30, 'c')
-    a_cache.read(30)
-    a_cache.read(30)
-    a_cache.read(30)
-    a_cache.read(20)
-    a_cache.read(20)
-    a_cache.read(10)
-    a_cache.read(20)
-    a_cache.read(20)
-    a_cache.read(20)
-    a_cache.read(20)
-    a_cache.read(20)
+    a_cache.retrieve(30)
+    a_cache.retrieve(30)
+    a_cache.retrieve(30)
+    a_cache.retrieve(20)
+    a_cache.retrieve(20)
+    a_cache.retrieve(10)
+    a_cache.retrieve(20)
+    a_cache.retrieve(20)
+    a_cache.retrieve(20)
+    a_cache.retrieve(20)
+    a_cache.retrieve(20)
     a_cache.print()
     a_cache.write(50, 'c')
-    a_cache.read(50)
-    a_cache.read(30)
+    a_cache.retrieve(50)
+    a_cache.retrieve(30)
     a_cache.print()
 
 
