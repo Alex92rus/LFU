@@ -31,7 +31,7 @@ Other types may or may not work correctly as keys, strings and tuples work clean
 
 ### Sorting
 
-The frequencies are sorted in the doubly linked list which nodes are mapped as keys in the key_doubly_list_map: dictionary. Efficient sorting
+The frequencies in the doubly linked list are in a sorted ascending order. The frequency nodes of that list are mapped as keys in the key_doubly_list_map: dictionary. Efficient sorting
 can be achieved on the frequencies because at **every addition of a unit to a frequency we have to spend O(1) operations**.
 Therefore, our sorting complexity is split across all the calls of the retrieve method.
 
